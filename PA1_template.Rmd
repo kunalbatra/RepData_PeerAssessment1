@@ -1,25 +1,87 @@
 ---
-title: "Reproducible Research: Peer Assessment 1"
-output: 
-  html_document:
-    keep_md: true
+title: "Activity_Monitoring_markdown"
+output:
+  html_document: default
+  pdf_document: default
+  word_document: default
 ---
 
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
 
-## Loading and preprocessing the data
+#Loading the raw data file into R and installing the required packages
 
+```{r Chunk1}
+activity_monitoring_data <- read.csv("activity.csv", header=TRUE)
+install.packages("dplyr", repos = "http://cran.us.r-project.org", dependencies = TRUE)
+install.packages("timeDate", repos = "http://cran.us.r-project.org", dependencies = TRUE)
+install.packages("reshape2", repos = "http://cran.us.r-project.org", dependencies = TRUE)
+install.packages("ggplot2", repos = "http://cran.us.r-project.org", dependencies = TRUE)
+library(timeDate)
+library(reshape2)
+library(ggplot2)
+library(dplyr)
+```
 
+#Plotting the Histogram of the total number of steps taken each day
 
-## What is mean total number of steps taken per day?
+```{r Chunk2}
+#Calculate total steps per day and convert into a dataframe
+total_steps <-with(activity_monitoring_data, tapply(steps,date,sum, na.rm=TRUE))
+total_steps_df <-melt(total_steps, varnames = "date", value.name = "total_steps")
+rm(total_steps)
+with(total_steps_df, barplot(total_steps, names.arg=date, xlab="Date", ylab="Total Steps", main="Histogram of Total Steps taken each day in the month of October and November"))
+```
 
+#Calculating mean and median number of steps taken each day
 
+```{r Chunk3}
+summary_data <- activity_monitoring_data %>% group_by(date) %>% summarise(mean_steps=mean(steps,na.rm=TRUE),
+                                                                          median_steps=median(steps[steps>0], na.rm=TRUE))
 
-## What is the average daily activity pattern?
+par(mfrow=c(1,2))
 
+#Plotting the Histogram of Mean and Median steps for each day in October and November
 
+with(summary_data, barplot(mean_steps, names.arg=date, xlab="Date", ylab="Mean Steps", main="Histogram of Mean steps each day"))
 
-## Imputing missing values
+with(summary_data, barplot(median_steps, names.arg=date, xlab="Date", ylab="Median Steps", main="Histogram of Median steps each day"))
+```
 
+#Plotting a time series plot using the Summary data from Chunk3 for mean steps
+```{r Chunk4}
+ggplot(summary_data, aes(as.Date(date), mean_steps)) + geom_line(na.rm=TRUE)
+```
 
+#Calculate the 5 minute interval with maximum average number of steps
+```{r Chunk5}
+summary_data <- activity_monitoring_data %>% group_by(interval) %>% summarise(mean_steps=mean(steps,na.rm=TRUE)) %>% arrange(-mean_steps) %>% slice(n=1)
+interval<- summary_data$interval
+mean_steps <- summary_data$mean_steps
+## Interval 835 has maximum mean steps = 206
+```
 
-## Are there differences in activity patterns between weekdays and weekends?
+# Imputation for missing values
+```{r Chunk6}
+#Replace the missing value for steps column by average value for each interval to include the impact of each interval on the
+#number of steps taken
+
+activity_monitoring_data <- activity_monitoring_data %>% group_by(interval) %>% mutate(steps_impute =ifelse(is.na(steps),mean(steps, na.rm=TRUE), steps))
+```
+
+# Histogram of total steps each day using new imputed steps column in Chunk6
+```{r Chunk7}
+total_steps <-with(activity_monitoring_data, tapply(steps_impute,date,sum, na.rm=TRUE))
+total_steps_df <-melt(total_steps, varnames = "date", value.name = "total_steps")
+rm(total_steps)
+with(total_steps_df, barplot(total_steps, names.arg=date, xlab="Date", ylab="Total Steps", main="Histogram of Total Steps taken each day after imputation in the month of October and November"))
+```
+
+# Panel plot for steps in each 5minute interval between weekdays and weekends
+```{r Chunk8}
+activity_monitoring_data$day <- as.factor(ifelse(isWeekday(as.Date(activity_monitoring_data$date)), "weekday", "weekend"))
+summary_data <- activity_monitoring_data %>% group_by(interval, day) %>% summarise(mean_steps=mean(steps,na.rm=TRUE))
+ggplot(summary_data, aes(interval,mean_steps)) + geom_bar(stat='identity') + labs(x="5 Minute Interval", y="Mean Steps", title="Histogram of Mean Steps taken in each 5 Minute Interval compared between Weekdays & Weekends") + facet_wrap(~day)
+```
+
