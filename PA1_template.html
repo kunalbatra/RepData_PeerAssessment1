@@ -128,7 +128,8 @@ $(document).ready(function () {
 install.packages(&quot;dplyr&quot;, repos = &quot;http://cran.us.r-project.org&quot;, dependencies = TRUE)</code></pre>
 <pre><code>## Installing package into 'C:/Users/ssakub/Documents/R/win-library/3.4'
 ## (as 'lib' is unspecified)</code></pre>
-<pre><code>## Warning: dependency 'Lahman' is not available</code></pre>
+<pre><code>## Warning in install.packages :
+##   dependency 'Lahman' is not available</code></pre>
 <pre><code>## also installing the dependencies 'ellipsis', 'blob', 'glue', 'lifecycle', 'rlang', 'tibble', 'tidyselect', 'vctrs', 'dbplyr'</code></pre>
 <pre><code>## 
 ##   There are binary versions available but the source versions are later:
@@ -141,10 +142,9 @@ install.packages(&quot;dplyr&quot;, repos = &quot;http://cran.us.r-project.org&q
 ## tidyselect   0.2.5  1.1.0              TRUE
 ## vctrs        0.1.0  0.3.1              TRUE
 ## dbplyr       1.4.0  1.4.4             FALSE
-## dplyr      0.8.0.1  1.0.0              TRUE
-## 
-##   Binaries will be installed
-## package 'ellipsis' successfully unpacked and MD5 sums checked
+## dplyr      0.8.0.1  1.0.0              TRUE</code></pre>
+<pre><code>## Do you want to install from sources the packages which need compilation?</code></pre>
+<pre><code>## package 'ellipsis' successfully unpacked and MD5 sums checked
 ## package 'glue' successfully unpacked and MD5 sums checked
 ## package 'rlang' successfully unpacked and MD5 sums checked
 ## package 'tibble' successfully unpacked and MD5 sums checked
@@ -153,43 +153,39 @@ install.packages(&quot;dplyr&quot;, repos = &quot;http://cran.us.r-project.org&q
 ## package 'dplyr' successfully unpacked and MD5 sums checked
 ## 
 ## The downloaded binary packages are in
-##  C:\Users\ssakub\AppData\Local\Temp\Rtmp6vHOlF\downloaded_packages</code></pre>
+##  C:\Users\ssakub\AppData\Local\Temp\RtmpAFzh7g\downloaded_packages</code></pre>
 <pre><code>## installing the source packages 'blob', 'lifecycle', 'dbplyr'</code></pre>
-<pre><code>## Warning: running command '&quot;C:/PROGRA~1/R/R-34~1.2/bin/x64/R&quot; CMD INSTALL -l &quot;C:
-## \Users\ssakub\Documents\R\win-library\3.4&quot; C:\Users\ssakub\AppData\Local\Temp
-## \Rtmp6vHOlF/downloaded_packages/blob_1.2.1.tar.gz' had status 1</code></pre>
-<pre><code>## Warning in install.packages(&quot;dplyr&quot;, repos = &quot;http://cran.us.r-project.org&quot;, :
-## installation of package 'blob' had non-zero exit status</code></pre>
-<pre><code>## Warning: running command '&quot;C:/PROGRA~1/R/R-34~1.2/bin/x64/R&quot; CMD INSTALL -l &quot;C:
-## \Users\ssakub\Documents\R\win-library\3.4&quot; C:\Users\ssakub\AppData\Local\Temp
-## \Rtmp6vHOlF/downloaded_packages/lifecycle_0.2.0.tar.gz' had status 1</code></pre>
-<pre><code>## Warning in install.packages(&quot;dplyr&quot;, repos = &quot;http://cran.us.r-project.org&quot;, :
-## installation of package 'lifecycle' had non-zero exit status</code></pre>
-<pre><code>## Warning: running command '&quot;C:/PROGRA~1/R/R-34~1.2/bin/x64/R&quot; CMD INSTALL -l &quot;C:
-## \Users\ssakub\Documents\R\win-library\3.4&quot; C:\Users\ssakub\AppData\Local\Temp
-## \Rtmp6vHOlF/downloaded_packages/dbplyr_1.4.4.tar.gz' had status 1</code></pre>
-<pre><code>## Warning in install.packages(&quot;dplyr&quot;, repos = &quot;http://cran.us.r-project.org&quot;, :
-## installation of package 'dbplyr' had non-zero exit status</code></pre>
+<pre><code>## Warning in install.packages :
+##   running command '&quot;C:/PROGRA~1/R/R-34~1.2/bin/x64/R&quot; CMD INSTALL -l &quot;C:\Users\ssakub\Documents\R\win-library\3.4&quot; C:\Users\ssakub\AppData\Local\Temp\RtmpAFzh7g/downloaded_packages/blob_1.2.1.tar.gz' had status 1
+## Warning in install.packages :
+##   installation of package 'blob' had non-zero exit status
+## Warning in install.packages :
+##   running command '&quot;C:/PROGRA~1/R/R-34~1.2/bin/x64/R&quot; CMD INSTALL -l &quot;C:\Users\ssakub\Documents\R\win-library\3.4&quot; C:\Users\ssakub\AppData\Local\Temp\RtmpAFzh7g/downloaded_packages/lifecycle_0.2.0.tar.gz' had status 1
+## Warning in install.packages :
+##   installation of package 'lifecycle' had non-zero exit status
+## Warning in install.packages :
+##   running command '&quot;C:/PROGRA~1/R/R-34~1.2/bin/x64/R&quot; CMD INSTALL -l &quot;C:\Users\ssakub\Documents\R\win-library\3.4&quot; C:\Users\ssakub\AppData\Local\Temp\RtmpAFzh7g/downloaded_packages/dbplyr_1.4.4.tar.gz' had status 1
+## Warning in install.packages :
+##   installation of package 'dbplyr' had non-zero exit status</code></pre>
 <pre class="r"><code>install.packages(&quot;timeDate&quot;, repos = &quot;http://cran.us.r-project.org&quot;, dependencies = TRUE)</code></pre>
 <pre><code>## Installing package into 'C:/Users/ssakub/Documents/R/win-library/3.4'
 ## (as 'lib' is unspecified)</code></pre>
 <pre><code>## package 'timeDate' successfully unpacked and MD5 sums checked
 ## 
 ## The downloaded binary packages are in
-##  C:\Users\ssakub\AppData\Local\Temp\Rtmp6vHOlF\downloaded_packages</code></pre>
+##  C:\Users\ssakub\AppData\Local\Temp\RtmpAFzh7g\downloaded_packages</code></pre>
 <pre class="r"><code>install.packages(&quot;reshape2&quot;, repos = &quot;http://cran.us.r-project.org&quot;, dependencies = TRUE)</code></pre>
 <pre><code>## Installing package into 'C:/Users/ssakub/Documents/R/win-library/3.4'
 ## (as 'lib' is unspecified)</code></pre>
 <pre><code>## 
 ##   There is a binary version available but the source version is later:
 ##          binary source needs_compilation
-## reshape2  1.4.3  1.4.4              TRUE
-## 
-##   Binaries will be installed
-## package 'reshape2' successfully unpacked and MD5 sums checked
+## reshape2  1.4.3  1.4.4              TRUE</code></pre>
+<pre><code>## Do you want to install from sources the package which needs compilation?</code></pre>
+<pre><code>## package 'reshape2' successfully unpacked and MD5 sums checked
 ## 
 ## The downloaded binary packages are in
-##  C:\Users\ssakub\AppData\Local\Temp\Rtmp6vHOlF\downloaded_packages</code></pre>
+##  C:\Users\ssakub\AppData\Local\Temp\RtmpAFzh7g\downloaded_packages</code></pre>
 <pre class="r"><code>install.packages(&quot;ggplot2&quot;, repos = &quot;http://cran.us.r-project.org&quot;, dependencies = TRUE)</code></pre>
 <pre><code>## Installing package into 'C:/Users/ssakub/Documents/R/win-library/3.4'
 ## (as 'lib' is unspecified)</code></pre>
